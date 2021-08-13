@@ -43,7 +43,7 @@ class MainScreen extends StatelessWidget {
                 currentScreen: '/market', arguments: [this.user]),
           ),
           ChangeNotifierProvider<ValueNotifier<int>>(
-            create: (context) => ValueNotifier<int>(4),
+            create: (context) => ValueNotifier<int>(5),
           ),
         ],
         child: Scaffold(
@@ -212,7 +212,7 @@ class NavDrawer extends StatelessWidget {
               Icons.inbox,
               color: Theme.of(context).primaryColorDark,
             ),
-            title: Text('Inbox'),
+            title: Text('Transacciones'),
             onTap: () {
               Navigator.of(context).pop();
               Provider.of<ValueNotifier<int>>(context, listen: false).value = 2;
@@ -247,20 +247,40 @@ class NavDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(
+              Icons.add_shopping_cart,
+              color: Theme.of(context).primaryColorDark,
+            ),
+            title: Text('Agregar Producto'),
+            onTap: () {
+              Navigator.of(context).pop();
+              Provider.of<ValueNotifier<int>>(context, listen: false).value = 4;
+              Provider.of<NavigationModel>(context, listen: false)
+                  .clearThenPush(
+                      route: NavigationModel.screens[5],
+                      arguments: [this.user, true, null]);
+            },
+            tileColor: (Provider.of<ValueNotifier<int>>(context, listen: false)
+                        .value ==
+                    4)
+                ? Theme.of(context).primaryColorLight.withOpacity(greyOpacity)
+                : null,
+          ),
+          ListTile(
+            leading: Icon(
               Icons.shopping_cart,
               color: Theme.of(context).primaryColorDark,
             ),
             title: Text('Mercado'),
             onTap: () {
               Navigator.of(context).pop();
-              Provider.of<ValueNotifier<int>>(context, listen: false).value = 4;
+              Provider.of<ValueNotifier<int>>(context, listen: false).value = 5;
               Provider.of<NavigationModel>(context, listen: false)
                   .clearThenPush(
                       route: NavigationModel.screens[3], arguments: null);
             },
             tileColor: (Provider.of<ValueNotifier<int>>(context, listen: false)
                         .value ==
-                    4)
+                    5)
                 ? Theme.of(context).primaryColorLight.withOpacity(greyOpacity)
                 : null,
           ),
@@ -272,14 +292,14 @@ class NavDrawer extends StatelessWidget {
             title: Text('Calificar'),
             onTap: () {
               Navigator.of(context).pop();
-              Provider.of<ValueNotifier<int>>(context, listen: false).value = 5;
+              Provider.of<ValueNotifier<int>>(context, listen: false).value = 6;
               Provider.of<NavigationModel>(context, listen: false)
                   .clearThenPush(
                       route: NavigationModel.screens[7], arguments: null);
             },
             tileColor: (Provider.of<ValueNotifier<int>>(context, listen: false)
                         .value ==
-                    5)
+                    6)
                 ? Theme.of(context).primaryColorLight.withOpacity(greyOpacity)
                 : null,
           ),
@@ -291,14 +311,14 @@ class NavDrawer extends StatelessWidget {
             title: Text('Feedback'),
             onTap: () {
               Navigator.of(context).pop();
-              Provider.of<ValueNotifier<int>>(context, listen: false).value = 6;
+              Provider.of<ValueNotifier<int>>(context, listen: false).value = 7;
               Provider.of<NavigationModel>(context, listen: false)
                   .clearThenPush(
                       route: NavigationModel.screens[4], arguments: null);
             },
             tileColor: (Provider.of<ValueNotifier<int>>(context, listen: false)
                         .value ==
-                    6)
+                    7)
                 ? Theme.of(context).primaryColorLight.withOpacity(greyOpacity)
                 : null,
           ),

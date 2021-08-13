@@ -151,7 +151,7 @@ class ProductScreenState extends State<ProductScreen> {
                         this._price,
                         this._quantity,
                       ],
-                      categories: snapshot.data,
+                      categories: snapshot.data as DocumentSnapshot,
                       myProduct: this.myProduct,
                     ),
                   ),
@@ -218,7 +218,7 @@ class ProductScreenState extends State<ProductScreen> {
 class MPForm extends MyProductWidget {
   final bool isCreating;
   final List<TextEditingController> controllers;
-  final categories;
+  final DocumentSnapshot categories;
   static const double spacing = 12.0;
   MPForm(
       {required this.isCreating,
@@ -239,7 +239,8 @@ class MPForm extends MyProductWidget {
             Consumer<ValueNotifier<String>>(
               builder: (_, categoryOption, __) {
                 final List<int> options = [];
-                for (int i = 0; i < this.categories.length; i++) options.add(i);
+                for (int i = 0; i < this.categories['categories'].length; i++)
+                  options.add(i);
 
                 return Card(
                   child: ListTile(
@@ -263,9 +264,9 @@ class MPForm extends MyProductWidget {
                             context: context,
                             title: 'Opciones',
                             options: options,
-                            captions: this.categories,
-                            aftermath: (index) =>
-                                categoryOption.value = this.categories[index],
+                            captions: this.categories['categories'],
+                            aftermath: (index) => categoryOption.value =
+                                this.categories['categories'][index],
                             areRoutingOptions: false,
                           );
                         }),
