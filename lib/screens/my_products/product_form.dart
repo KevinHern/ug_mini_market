@@ -335,7 +335,20 @@ class MPHelpButton extends MyProductWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AccentButton(icon: Icons.info, text: 'Ayuda', onPressed: () {});
+    return AccentButton(
+      icon: Icons.info,
+      text: 'Ayuda',
+      onPressed: () {
+        DialogTemplate.showMessage(
+          context: context,
+          message:
+              "Categoría:\nA qué área pertenece tu producto. Así es más fácil buscar y filtrar tu producto.\n\n"
+              "Nombre del producto:\nEs el nombre con el cual quieres identificar el producto.\n\n"
+              "Descripción:\nUna descripción general o detalles que pueden identificar tu producto.\n\n"
+              "Detalles:\nAlgo adicional que quisieras agregar. Información detallada para tus clientes potenciales (como lugar de encuentro, hora de encuentro, método de pago aceptado, etc).\n\n",
+        );
+      },
+    );
   }
 }
 
